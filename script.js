@@ -1,12 +1,18 @@
+// score var
+
 let humanScore = 0;
 let computerScore = 0;
 
 
-// function round
+// round function
 function playRound() {
+
+    // assign var
 
     let computerSelection = getComputerChoice();
     let humanSelection = getHumanChoice();
+
+    // random computer input function
 
     function getComputerChoice() {
         const options = ["rock", "paper", "scissors"]
@@ -21,6 +27,8 @@ function playRound() {
         }
     }
 
+    // human input function
+
     function getHumanChoice() {
         let choice = window.prompt("Play rock, paper or scissors a minimun of 5 times!!").toLowerCase();
         while (choice != "rock" && choice != "paper" && choice != "scissors"){
@@ -28,6 +36,8 @@ function playRound() {
         }
         return choice;
     }
+
+    // round logic plus score increment
 
     if(computerSelection == humanSelection) {
         return console.log("Empate")
@@ -52,12 +62,16 @@ function playRound() {
     } 
 }
 
+// Game function 5 games
+
 function playGame() {
     playRound()
     playRound()
     playRound()
     playRound()
     playRound()
+
+    // Game logic
 
     if(humanScore == computerScore) {
         console.log("Empate!!!")
@@ -67,9 +81,12 @@ function playGame() {
         console.log("You win!!!!")
     }
 
+    // log game score
 
     console.log("Human: " + humanScore)
     console.log("Computer: " + computerScore)
 }
+
+// Game init
 
 playGame()
