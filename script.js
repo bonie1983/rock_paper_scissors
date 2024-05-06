@@ -3,16 +3,18 @@
 let humanScore = 0;
 let computerScore = 0;
 
+// query selectors
+
+const humanPuntuation = document.querySelector("#humanPuntuation");
+const computerPuntuation = document.querySelector("#computerPuntuation");
+const ronda = document.querySelector("#ronda");
+const winner = document.querySelector("#winner");
 
 // round function
-function playRound() {
-
-    // assign var
+function playRound(selector) {
 
     let computerSelection = getComputerChoice();
-    let humanSelection = getHumanChoice();
-
-    // random computer input function
+    let humanSelection = selector;
 
     function getComputerChoice() {
         const options = ["rock", "paper", "scissors"]
@@ -27,66 +29,59 @@ function playRound() {
         }
     }
 
-    // human input function
-
-    function getHumanChoice() {
-        let choice = window.prompt("Play rock, paper or scissors a minimun of 5 times!!").toLowerCase();
-        while (choice != "rock" && choice != "paper" && choice != "scissors"){
-        choice = window.prompt("You didn't choose correctly. Choose again between: Rock, Paper or Scissors.").toLowerCase();
-        }
-        return choice;
-    }
-
     // round logic plus score increment
 
     if(computerSelection == humanSelection) {
-        return console.log("Empate")
+        return ronda.textContent = "Empate";
     } else if(humanSelection == "rock" && computerSelection == "scissors") {
         humanScore++
-        return console.log("You win with rock to scissors!!")
+        return ronda.textContent= "You win with rock to scissors!!";
     } else if(humanSelection == "rock" && computerSelection == "paper") {
         computerScore++
-        return console.log("Computer wins to you with paper")
+        return ronda.textContent = "Computer wins to you with paper";
     } else if(humanSelection == "paper" && computerSelection == "rock") {
         humanScore++
-        return console.log("You win with paper to rock")
+        return ronda.textContent = "You win with paper to rock";
     } else if(humanSelection == "paper" && computerSelection == "scissors") {
         computerScore++
-        return console.log("Computer wins to you with scissors")
+        return ronda.textContent = "Computer wins to you with scissors";
     } else if(humanSelection == "scissors"&& computerSelection == "paper") {
         humanScore++
-        return console.log("You win with scissors to paper")
+        return ronda.textContent = "You win with scissors to paper";
     } else if(humanSelection == "scissors"&& computerSelection == "rock") {
         computerScore++
-        return console.log("Computer wins to you with rock")
+        return ronda.textContent = "Computer wins to you with rock";
     } 
 }
 
-// Game function 5 games
-
-function playGame() {
-    playRound()
-    playRound()
-    playRound()
-    playRound()
-    playRound()
-
-    // Game logic
-
-    if(humanScore == computerScore) {
-        console.log("Empate!!!")
-    } else if(humanScore < computerScore) {
-        console.log("Computer wins!!")
-    } else if(humanScore > computerScore) {
-        console.log("You win!!!!")
+function buttonLogic() {
+    humanPuntuation.textContent = humanScore;
+    computerPuntuation.textContent = computerScore;
+    if (humanScore == 5) {
+        winner.textContent = "Humano ganador!!!!!";
+    } else if (computerScore == 5) {
+        winner.textContent = "Ordenador ganador!!!";
     }
 
-    // log game score
-
-    console.log("Human: " + humanScore)
-    console.log("Computer: " + computerScore)
+    winner.setAttribute("style", "color: red; background: white;");
 }
 
-// Game init
+// On click buttons
 
-playGame()
+const btnRock = document.querySelector("#rock");
+btnRock.addEventListener("click", () => {
+    playRound("rock");
+    buttonLogic();
+  });
+
+const btnPaper = document.querySelector("#paper");
+btnPaper.addEventListener("click", () => {
+    playRound("paper");
+    buttonLogic();
+  });
+
+const btnScissors = document.querySelector("#scissors");
+btnScissors.addEventListener("click", () => {
+    playRound("scissors");
+    buttonLogic();
+  });
