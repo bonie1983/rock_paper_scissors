@@ -7,7 +7,7 @@ let computerScore = 0;
 
 const humanPuntuation = document.querySelector("#humanPuntuation");
 const computerPuntuation = document.querySelector("#computerPuntuation");
-const ronda = document.querySelector("#ronda");
+const text = document.querySelector("#text");
 const winner = document.querySelector("#winner");
 
 // round function
@@ -32,25 +32,25 @@ function playRound(selector) {
     // round logic plus score increment
 
     if(computerSelection == humanSelection) {
-        return ronda.textContent = "Empate";
+        return text.textContent = "Empate. Intenta de nuevo";
     } else if(humanSelection == "rock" && computerSelection == "scissors") {
         humanScore++
-        return ronda.textContent= "You win with rock to scissors!!";
+        return text.textContent= "Has elegido roca y el ordenador tijeras. Tú ganas!!";
     } else if(humanSelection == "rock" && computerSelection == "paper") {
         computerScore++
-        return ronda.textContent = "Computer wins to you with paper";
+        return text.textContent = "El ordenador te gana con papel al haber tú elegido roca.";
     } else if(humanSelection == "paper" && computerSelection == "rock") {
         humanScore++
-        return ronda.textContent = "You win with paper to rock";
+        return text.textContent = "Has elegido papel y el ordenador roca. Tú ganas!!";
     } else if(humanSelection == "paper" && computerSelection == "scissors") {
         computerScore++
-        return ronda.textContent = "Computer wins to you with scissors";
+        return text.textContent = "El ordenador te gana con tijeras al haber elegido tu papel.";
     } else if(humanSelection == "scissors"&& computerSelection == "paper") {
         humanScore++
-        return ronda.textContent = "You win with scissors to paper";
+        return text.textContent = "Has elegido tijeras y el ordenador papel. Tú ganas!!";
     } else if(humanSelection == "scissors"&& computerSelection == "rock") {
         computerScore++
-        return ronda.textContent = "Computer wins to you with rock";
+        return text.textContent = "El ordenador te gana con roca al haber elegido tú tijeras.";
     } 
 }
 
